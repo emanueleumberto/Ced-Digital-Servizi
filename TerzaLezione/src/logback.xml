@@ -1,0 +1,29 @@
+<configuration>
+    <!-- Appender in Console -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender in Console -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/app.log</file> <!-- percorso relativo al file di log -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Log level globale -->
+    <!-- DEBUG | INFO | WARN | ERROR -->
+    <root level="DEBUG">
+<!--        <appender-ref ref="STDOUT" />-->
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- log specifici per una classe/package -->
+    <logger name="ext.miaazienda.mioprogetto.miopackage.miaclasse" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+</configuration>

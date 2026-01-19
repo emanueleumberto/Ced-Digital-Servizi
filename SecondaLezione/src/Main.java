@@ -82,6 +82,8 @@ public class Main {
         arrNavigatore[1] = cc;
         arrNavigatore[2] = s1;
 
+        Navigatore n = new Automobile("Fiat", "Panda", "Bianca", 3, CategoriaAutomobile.UTILITARIA);
+
         for (int i = 0; i < arrNavigatore.length; i++) {
             arrNavigatore[i].aggiornaNavigatore();
         }
@@ -92,7 +94,7 @@ public class Main {
         System.out.println(name);
 
         Logger log = LoggerFactory.getLogger(Main.class);
-        log.info("Sono la dipendenza Logger");
+        log.info("Sono INFO la dipendenza Logger");
 
     }
 }
