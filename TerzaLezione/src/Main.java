@@ -48,11 +48,12 @@ public class Main {
         // A differenza degli array non hanno una dimensione fissa
         // Una collection può essere, ordinata o non ordinata, può ammettere duplicati o no.
         // L'interfaccia Collection non specifica nulla di quanto detto sopra (valori ordinati e/o duplicati)
-        // Collection
-        //  Non memorizza l'ordine in cui sono stati inseriti i dati,
-        //  non definisce se ci possono essere dei valori duplicati
-        //  Non può contenere valori primitivi, ma solo oggetti. Se ho bisogno di utilizzare dati primitivi
-        //  sono costretto ad utilizzare le classi Wrapper(Integer, Double, Char, Boolean)
+        // --> Collection
+        //      Non memorizza l'ordine in cui sono stati inseriti i dati,
+        //      non definisce se ci possono essere dei valori duplicati
+        //      Non può contenere valori primitivi, ma solo oggetti.
+        //      Se ho bisogno di utilizzare dati primitivi
+        //      sono costretto ad utilizzare le classi Wrapper(Integer, Double, Char, Boolean)
         //      --> List
         //              Gli elementi sono indicizzati e può contenere duplicati
         //              I valori inseriti sono memorizzati in base all'ordine di inserimento
@@ -62,12 +63,28 @@ public class Main {
         //              Non ammettono duplicati e gli elementi non sono indicizzati
         //              I valori inseriti NON sono memorizzati in base all'ordine di inserimento
         //              La classe principale che implementa Set è HashSet
+        //          --> SortedSet
+        //                  Non ammette duplicati ma ordina in un certo modo gli elementi
+        //                  La classe principale che implementa SortedSet è TreeSet
         //      --> Queue
-
+        //              Crea una coda che ha dei metodi per leggere, inserire o eliminare elementi
+        //              da inizio e fine della coda. Può contenere duplicati
+        //              La classe principale che implementa Queue è LinkedList
+        // --> Map
+        //      Definisce una funzione composta da chiave/valore. Non può contenere valori primitivi
+        //      Se ho bisogno di utilizzare valori primitivi, sono costretto ad utilizzare le classi Wrapper(Integer, Double, Char, Boolean)
+        //      Una chiave sarà un valore univoco nella mappa, che servirà per poter accedere al valore associato.
+        //      I valori inseriti NON sono memorizzati in base all'ordine di inserimento
+        //      La classe principale che implementa Map è HashMap
+        //      --> SortedMap
+        //              Fornisce un ordine sulle chiavi della mappa
+        //              La classe principale che implementa SortedMap è TreeMap
 
         // testCollection();
         // testList();
-        testSet();
+        // testSet();
+        // testQueue();
+        // testMap();
 
     }
 
@@ -114,6 +131,11 @@ public class Main {
         boolean cont = l.contains("Secondo Elemento");
         System.out.println("Contains element 'Secondo Elemento': " + cont);
 
+        // Controllo per verificare i valori duplicati in una lista
+        if(!l.contains("Elemento Univoco")) {
+            l.add("Elemento Univoco");
+        }
+
         boolean isEmp = l.isEmpty();
         System.out.println("List is Empty?: " + isEmp);
 
@@ -143,7 +165,9 @@ public class Main {
     }
 
     public static void testSet() {
-        Set<String> s = new HashSet<>();
+        // Set<String> s = new HashSet<>();
+        SortedSet<String> s = new TreeSet<>();
+
         s.add("Primo Elemento");
         s.add("Secondo Elemento");
         s.add("Terzo Elemento");
@@ -160,6 +184,129 @@ public class Main {
         }
 
         System.out.println("Set size: " + s.size());
+
+        boolean cont = s.contains("Quinto Elemento");
+        System.out.println("Contains element 'Secondo Elemento': " + cont);
+
+        boolean isEmp = s.isEmpty();
+        System.out.println("Set is Empty?: " + isEmp);
+
+        // s.remove("Secondo Elemento");
+        // System.out.println("Set size: " + s.size());
+
+        for (String str: s) {
+            System.out.println(str);
+        }
+
+        //s.clear();
+        //isEmp = s.isEmpty();
+        //System.out.println("Set is Empty?: " + isEmp);
+
+        // Metodi di SortedSet
+        String f1 = s.first();
+        System.out.println("First Element : " + f1);
+        String l1 = s.last();
+        System.out.println("Last Element : " + l1);
+
+        String gf1 = s.getFirst();
+        System.out.println("Get First Element : " + gf1);
+        String gl1 = s.getLast();
+        System.out.println("Get Last Element : " + gl1);
+
+        String rf1 = s.removeFirst();
+        System.out.println("Remove First Element : " + rf1);
+        String rl1 = s.removeLast();
+        System.out.println("Remove Last Element : " + rl1);
+
+        for (String str: s) {
+            System.out.println(str);
+        }
+
+    }
+
+    public static void testQueue() {
+        Queue<String> q = new LinkedList<>();
+        q.add("Primo Elemento");
+        q.add("Secondo Elemento");
+        q.add("Terzo Elemento");
+        q.add("Quarto Elemento");
+        q.add("Terzo Elemento");
+
+        System.out.println("Queue size: " + q.size());
+
+        boolean cont = q.contains("Secondo Elemento");
+        System.out.println("Contains element 'Secondo Elemento': " + cont);
+
+        boolean isEmp = q.isEmpty();
+        System.out.println("Queue is Empty?: " + isEmp);
+
+//        q.remove("Secondo Elemento");
+
+//        for (String str : q) {
+//            System.out.println(str);
+//        }
+
+        //q.clear();
+        //isEmp = q.isEmpty();
+        //System.out.println("Queue is Empty?: " + isEmp);
+        //System.out.println("Queue size: " + q.size());
+
+        // Metodi di Queue
+        String getFirst = q.peek(); // Legge il primo elemento di una coda
+        System.out.println("First element: " + getFirst);
+
+        String first = q.poll(); // Legge e rimuove un elemento da una coda
+        System.out.println("First element poll: " + first);
+
+        q.remove();
+
+        for (String str : q) {
+            System.out.println(str);
+        }
+
+    }
+
+    public static void testMap() {
+        Map<String, String> m = new HashMap<>();
+        m.put("A", "Primo Elemento");
+        m.put("B", "Secondo Elemento");
+        m.put("C", "Terzo Elemento");
+        m.put("D", "Quarto Elemento");
+        m.put("E", "Terzo Elemento");
+
+        if(!m.containsKey("B")) {
+            m.put("B", "Quinto Elemento");
+        }
+
+        System.out.println("Map size: " + m.size());
+
+        boolean key = m.containsKey("B");
+        System.out.println("Map contains Key 'B': " + key);
+
+        boolean val = m.containsValue("Terzo Elemento");
+        System.out.println("Map contains Value 'Terzo Elemento': " + val);
+
+        String ele = m.get("C");
+        System.out.println("Element key 'C': " + ele);
+
+        System.out.println("Map isEmpty?: " + m.isEmpty());
+
+        // m.clear();
+        // System.out.println("Map size: " + m.size());
+        // System.out.println("Map isEmpty?: " + m.isEmpty());
+
+        Set<String> keys =  m.keySet();
+        for (String k: keys) {
+            System.out.println(k + " -> " + m.get(k));
+        }
+
+        System.out.println("****************************************");
+
+        Collection<String> values =  m.values();
+        for (String v : values) {
+            System.out.println(v);
+        }
+
     }
 
     public static void calcolaDivisione() throws CustomException {
