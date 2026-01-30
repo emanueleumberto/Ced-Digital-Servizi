@@ -7,6 +7,7 @@ public class Utente {
     private String lastName;
     private String city;
     private String email;
+    private Azienda company;
 
     public Utente(String firstName, String lastName, String city, String email) {
         this.firstName = firstName;
@@ -52,15 +53,22 @@ public class Utente {
     public void setEmail(String email) {
         this.email = email;
     }
+    public Azienda getCompany() {
+        return company;
+    }
+    public void setCompany(Azienda company) {
+        this.company = company;
+    }
 
     @Override
     public String toString() {
-        return "classes.Utente{" +
+        return "Utente{" +
                 "user_id=" + user_id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", city='" + city + '\'' +
                 ", email='" + email + '\'' +
+                ", company=" + company +
                 '}';
     }
 }
