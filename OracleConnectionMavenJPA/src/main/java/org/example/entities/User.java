@@ -1,0 +1,128 @@
+package org.example.entities;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+@NamedQuery(name = "User.findAllCity", query = "SELECT u FROM User u WHERE u.address.city = :city")
+public class User {
+
+    @Id
+    @SequenceGenerator(
+            name = "user_seq",
+            sequenceName = "USER_SEQ",
+            allocationSize = 1,
+            initialValue = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @Column(name = "user_id", nullable = false)
+    private Long id;
+
+    @Column(name = "firstname", nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String lastname;
+
+    @Column(nullable = true)
+    private Integer age;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Embedded
+    private Address address;
+
+    // Solo se voglio una relazione bidirezionale
+    @OneToOne(mappedBy = "user")
+    private Passport passport;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    public User() {}
+
+    public User(String name, String lastname, Integer age, String email, String password, Address address) {
+        this.name = name;
+        this.lastname = lastname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getLastname() {
+        return lastname;
+    }
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+    public Integer getAge() {
+        return age;
+    }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public Address getAddress() {
+        return address;
+    }
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    public Passport getPassport() {
+        return passport;
+    }
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+    public Company getCompany() {
+        return company;
+    }
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address=" + address +
+                ", passport=" + passport +
+                ", company=" + company +
+                '}';
+    }
+}
