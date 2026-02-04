@@ -1,6 +1,8 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -45,6 +47,14 @@ public class User {
     @JoinColumn(name = "company_id")
     private Company company;
 
+    @ManyToMany
+    @JoinTable(
+          name = "users_courses",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name= "course_id")
+    )
+    private List<Course> courses = new ArrayList<>();
+
     public User() {}
 
     public User(String name, String lastname, Integer age, String email, String password, Address address) {
@@ -54,6 +64,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.address = address;
+        this.courses = new ArrayList<>();
     }
 
     public Long getId() {
@@ -110,6 +121,12 @@ public class User {
     public void setCompany(Company company) {
         this.company = company;
     }
+    public List<Course> getCourses() {
+        return courses;
+    }
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
     @Override
     public String toString() {
@@ -123,6 +140,7 @@ public class User {
                 ", address=" + address +
                 ", passport=" + passport +
                 ", company=" + company +
+                ", courses=" + courses.size() +
                 '}';
     }
 }

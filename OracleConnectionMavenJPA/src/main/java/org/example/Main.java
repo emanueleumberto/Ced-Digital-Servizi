@@ -1,12 +1,10 @@
 package org.example;
 
 import org.example.dao.CompanyDAO;
+import org.example.dao.CourseDAO;
 import org.example.dao.PassportDAO;
 import org.example.dao.UserDAO;
-import org.example.entities.Address;
-import org.example.entities.Company;
-import org.example.entities.Passport;
-import org.example.entities.User;
+import org.example.entities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,8 +14,8 @@ import java.time.LocalDate;
 public class Main {
     public static void main( String[] args ) {
 
-        // EntityManagerFactory emf = Persistence.createEntityManagerFactory("projectJPA");
-        // EntityManager em = emf.createEntityManager();
+//         EntityManagerFactory emf = Persistence.createEntityManagerFactory("projectJPA");
+//         EntityManager em = emf.createEntityManager();
 
 //        Company c1 = new Company("Samsung S.p.a.");
 //        CompanyDAO.saveCompany(c1);
@@ -50,23 +48,49 @@ public class Main {
 //         Passport p4 = new Passport(2, LocalDate.now(), u4);
 //         PassportDAO.savePassport(p4);
 
-        User u = UserDAO.findUser(9);
-        // System.out.println(u);
-        System.out.println(u.getAddress().getCity());
-        System.out.println(u.getPassport().getDatePassport());
-        System.out.println(u.getCompany().getEmployees());
+//        Course c1 = new Course("Java", 50);
+//        CourseDAO.saveCourse(c1);
+//
+//        Course c2 = new Course("Oracle DB", 25);
+//        CourseDAO.saveCourse(c2);
+
+//        User u = UserDAO.findUser(10);
+//        System.out.println(u.getAddress().getCity());
+//        System.out.println(u.getPassport().getDatePassport());
+//        System.out.println(u.getCompany().getEmployees());
 
 
-        // u.getAddress().setStreet("Corso Italia 3");
-        // u.setAge(49);
-        // UserDAO.saveUser(u);
+//        u.getAddress().setStreet("Corso Italia 3");
+//        u.setAge(49);
+//        UserDAO.saveUser(u);
+//
+//        UserDAO.removeUser(u);
+//
+//        UserDAO.findAll().forEach(System.out::println);
+//        UserDAO.findAllByCity("Roma").forEach(System.out::println);
 
-        // UserDAO.removeUser(u);
-
-        // UserDAO.findAll().forEach(System.out::println);
-        // UserDAO.findAllByCity("Roma").forEach(System.out::println);
-
-
+    // Relazione ManyToMany
+//        User u1 = UserDAO.findUser(10);
+//        System.out.println(u1);
+//
+//        User u2 = UserDAO.findUser(11);
+//        System.out.println(u2);
+//
+//        Course c1 =CourseDAO.findCourse(1);
+//        System.out.println(c1);
+//        c1.getUserList().forEach(e -> System.out.println(e.getName() + " " + e.getLastname()));
+//
+//        u1.getCourses().add(c1);
+//        UserDAO.saveUser(u1);
+//
+//        u2.getCourses().add(c1);
+//        UserDAO.saveUser(u2);
+//
+//        Course c2 =CourseDAO.findCourse(2);
+//        System.out.println(c2);
+//
+//        u1.getCourses().add(c2);
+//        UserDAO.saveUser(u1);
 
     }
 }
